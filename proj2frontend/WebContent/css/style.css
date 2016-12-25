@@ -11,7 +11,7 @@ html, body{
 }
 @font-face{
    font-family:LobsterTwo-Regular;
-	 src: url(../fonts/LobsterTwo-Regular.ttf) format('truetype');
+	 src: url(../fonts/Westmeath.ttf) format('truetype');
 }
 @font-face{
    font-family:OpenSans-Regular;
@@ -19,7 +19,7 @@ html, body{
 }
 @font-face{
    font-family:LobsterTwo-Italic;
-	 src: url(../fonts/LobsterTwo-Italic.ttf) format('truetype');
+	 src: url(../fonts/Westmeath Italic.ttf) format('truetype');
 }
 p{
 	margin:0;
