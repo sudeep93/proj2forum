@@ -5,26 +5,80 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
-<table>
-<tr><td>Username</td><td><input type="text" ng-model="user.username"></td></tr>
-<tr><td>password</td><td><input type="password" ng-model="user.password"></td></tr>
-<tr><td>email</td><td><input type="text" ng-model="user.email"></td></tr>
 
 
-
-<tr><td>Select role</td><td>
-<input type="radio" ng-model="user.role" value="STUDENT">Student
+		<div class="sign-up-form">
+				<h3>Register Here</h3>
+					<p>Having hands on experience in creating innovative designs,I do offer design 
+						solutions which harness</p>
+				<div class="sign-up">
+					<h5>Personal Information</h5>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4 class="a">Name* :</h4>
+						</div>
+						<div class="sign-up2">
+							<form>
+								<input type="text" ng-model="user.fname" required="">
+							</form>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4 class="b">Email* :</h4>
+						</div>
+						<div class="sign-up2">
+							<form>
+								<input type="text" ng-model="user.email">
+							</form>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4 class="c">Select role* :</h4>
+						</div>
+						<div class="sign-up2">
+							
+								<input type="radio" ng-model="user.role" value="STUDENT">Student
 <input type="radio" ng-model="user.role" value="ALUMNI">Alumni
 <input type="radio" ng-model="user.role" value="EMPLOYEE">Employee</td>
-</tr>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<h6>Login Information</h6>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4 class="d">Username* :</h4>
+						</div>
+						<div class="sign-up2">
+							<form>
+							<input type="text" ng-model="user.username" required="">
 
-<tr><td><input type="submit" ng-click="registerUser()" value="Register"></td></tr>
-
-
-</table>
-
-</form>
+							</form>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4> Password* :</h4>
+						</div>
+						<div class="sign-up2">
+							<form>
+								<input type="password" ng-model="user.password">
+							</form>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<form>
+				<input type="submit" ng-click="registerUser()" value="Register">
+					</form>
+				</div>
+			</div>
+<!-- //register -->
+	
 {{errorMessage}}
 </body>
 </html>

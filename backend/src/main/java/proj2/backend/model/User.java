@@ -17,7 +17,7 @@ private int id;
 	
 @Column(unique=true,nullable=false)
 private String username;
-
+private String fname;
 @Column(nullable=false)
 private String password;
 
@@ -85,5 +85,11 @@ public void setOnline(boolean isOnline) {
 @Override
 public String toString() {
 	return this.username + " " + this.email + " " + this.role + "\n";
+}
+public String getFname() {
+	return fname;
+}
+public void setFname(String fname) {
+	this.fname = fname;
 }
 }
