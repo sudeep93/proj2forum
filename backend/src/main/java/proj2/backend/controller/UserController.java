@@ -3,6 +3,10 @@ package proj2.backend.controller;
 
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,14 +18,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import proj2.backend.implementation.FileUploadDAO;
 import proj2.backend.implementation.UserDao;
 import proj2.backend.model.User;
 import proj2.backend.model.Error;
+import proj2.backend.model.UploadFile;
 @RestController
 public class UserController {
 Logger logger=LoggerFactory.getLogger(this.getClass());
 @Autowired
 private UserDao userDao;
+@Autowired
+private FileUploadDAO fileUploadDao;
 
 @RequestMapping(value="/login",method=RequestMethod.POST)
 public ResponseEntity<?> login(@RequestBody User user,HttpSession session ){
@@ -40,6 +49,25 @@ public ResponseEntity<?> login(@RequestBody User user,HttpSession session ){
 		validUser.setOnline(true);
 		userDao.updateUser(validUser); // to update online status in db
 		logger.debug("validUser is not null");
+		
+		 //select * from proj2_profile_pics where username='adam';
+		  UploadFile getUploadFile=fileUploadDao.getFile(user.getUsername());
+		  if(getUploadFile!=null){
+	  	String name=getUploadFile.getFileName();
+	  	System.out.println(getUploadFile.getData());
+	  	byte[] imagefiles=getUploadFile.getData();
+	  	try{
+	  		String path="C:\\Users\\SUDEEP SAWANT\\git\\proj2forum\\backend\\src\\main\\webapp\\WEB-INF\\resources\\images\\"+user.getUsername();
+	  		File file=new File(path);
+	  		//file.mkdirs();
+	  		FileOutputStream fos = new FileOutputStream(file);//to Write some data 
+	  		fos.write(imagefiles);
+	  		fos.close();
+	  		}catch(Exception e){
+	  		e.printStackTrace();
+	  		}
+		  }
+		
 		return new ResponseEntity<User>(validUser,HttpStatus.OK);//200
 	}
 }
@@ -73,6 +101,15 @@ public ResponseEntity<?> logout(HttpSession session){
 	if(user!=null){
 		user.setOnline(false);
 		userDao.updateUser(user);
+		try{
+                        //change according to your workspace path and project name
+	  		String path="C:\\Users\\SUDEEP SAWANT\\git\\proj2forum\\backend\\src\\main\\webapp\\WEB-INF\\resources\\images\\"+user.getUsername();
+	  		File file=new File(path);
+	  		System.out.println(file.delete());
+	  		
+	  		}catch(Exception e){
+	  		e.printStackTrace();
+	  		}
 	}
 	session.removeAttribute("user");
 	session.invalidate();

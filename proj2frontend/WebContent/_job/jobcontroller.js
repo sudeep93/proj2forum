@@ -1,6 +1,7 @@
-app.controller('JobController',function($scope,$location,JobService){
+app.controller('JobController',function($scope,$location,$routeParams,JobService){
 	$scope.job={jobTitle:'',jobDescription:'',skillsRequired:'',salary:'',location:''}
 	$scope.jobs={}
+	$scope.showJobDetail=false
 	$scope.saveJob=function(){
 		console.log('entering save job in job controller')
 		JobService.saveJob($scope.job)
@@ -21,16 +22,27 @@ app.controller('JobController',function($scope,$location,JobService){
 	}
 	
 	function getAllJobs(){
+		$scope.showJobDetail=false;
 		console.log('entering get All jobs')
 		JobService.getAllJobs()
 		.then(function(response){
 			console.log(response.status); //200
-			$scope.jobs=response.data;  //List<Job>
-			
+			$scope.jobs=response.data;  //List<Job>			
 		},function(response){
 			console.log(response.status)
 		})
 	}
 	getAllJobs();
 	
+	$scope.getJobDetail=function(jobId){
+		$scope.showJobDetail=true;
+		JobService.getJobDetail(jobId)
+	.then(function(response){
+		$scope.jobDetail=response.data; // single Job object
+		console.log(response.status)
+		
+	},function(response){
+		console.log(response.status)
+	})
+	}	
 })

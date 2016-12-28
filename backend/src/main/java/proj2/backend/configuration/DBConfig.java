@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import proj2.backend.model.Job;
+import proj2.backend.model.UploadFile;
 import proj2.backend.model.User;
 
 
@@ -25,11 +26,12 @@ public class DBConfig {
 		LocalSessionFactoryBuilder lsf=new LocalSessionFactoryBuilder(getDataSource());
 		Properties hibernateProperties=new Properties();
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
 		return lsf.addAnnotatedClasses(User.class)
 				.addAnnotatedClasses(Job.class)
+				.addAnnotatedClasses(UploadFile.class)
 				
 
 				

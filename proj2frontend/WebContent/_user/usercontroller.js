@@ -1,4 +1,4 @@
-app.controller('UserController',function($scope,$rootScope,$location,UserService){
+app.controller('UserController',function($scope,$rootScope,$cookieStore,$location,UserService){
 	$scope.user={id:'',username:'',password:'',email:'',role:'',isOnline:'',enabled:''};
 	$scope.message;
 	
@@ -8,6 +8,8 @@ app.controller('UserController',function($scope,$rootScope,$location,UserService
 		.then(function(response){
 				$scope.user=response.data;
 				$rootScope.currentUser=$scope.user;
+				//key and value pair 
+				$cookieStore.put('currentUser',$rootScope.currentUser)
 				console.log('currentUser in rootScope ' + $rootScope.currentUser.id)
 				$location.path("/home");
 		},

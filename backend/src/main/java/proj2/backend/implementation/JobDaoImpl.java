@@ -32,5 +32,11 @@ private SessionFactory sessionFactory;
 		session.close();
 		return jobs;
 	}
+	public Job getJobDetail(int jobId) {
+		Session session=sessionFactory.openSession();
+		Job job=(Job)session.get(Job.class, jobId);
+		session.close();
+		return job;
+	}
 
 }

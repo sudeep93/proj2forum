@@ -1,4 +1,4 @@
-var app=angular.module("myApp",['ngRoute'])
+var app=angular.module("myApp",['ngRoute','ngCookies'])
 app.config(function($routeProvider){
 	console.log('entering configuration')
 	$routeProvider
@@ -21,4 +21,28 @@ app.config(function($routeProvider){
 		controller:'JobController',  // write a function to get all jobs from the backend => JobService
 		templateUrl:'_job/jobTitles.html'  // to display the job titles in html page
 	})
+	.when('/uploadPicture',{
+		templateUrl:'_user/uploadPicture.html'
+})
+})
+app.run(function($cookieStore,$rootScope,$location,UserService){  //entry point
+	
+	if($rootScope.currentUser==undefined)
+		$rootScope.currentUser=$cookieStore.get('currentUser')
+		
+	$rootScope.logout=function(){
+		console.log('logout function')
+		delete $rootScope.currentUser;
+		$cookieStore.remove('currentUser')
+		UserService.logout()
+		.then(function(response){
+			console.log("logged out successfully..");
+			$rootScope.message="Logged out Successfully";
+			$location.path('/login')
+		},
+		function(response){
+			console.log(response.status);
+		})
+		
+	}	
 })
