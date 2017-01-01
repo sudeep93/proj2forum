@@ -36,6 +36,40 @@ app.controller('UserController',function($scope,$rootScope,$cookieStore,$locatio
 			$location.path("/register")
 		})
 	}
+	/** To Send FriendRequest from listOfUsers*/
+	$scope.friendRequest=function(username){
+		alert('friendRequest in userController')
+		console.log('friendrequest function')
+		UserService.friendRequest(username)
+		.then(function(response){
+			console.log(response.status);
+			alert('Friend request Send')
+			getAllUsers();
+			$location.path('/getAllUsers')
+		},
+		function(response){
+			console.log(response.status);
+		}
+		)
+	}
+	
+	
+	
+	function getAllUsers(){
+		console.log('entering get all users ')
+		UserService.getAllUsers()
+		.then(function(response){
+		console.log(response.status)
+		console.log(response.data)
+		$scope.users=response.data
+		},function(response){
+			console.log(response.status)
+		}
+		)
+	}
+	getAllUsers()
+	
+	
 	
 	$rootScope.logout=function(){
 		console.log('logout function')

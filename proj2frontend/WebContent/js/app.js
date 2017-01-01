@@ -23,7 +23,21 @@ app.config(function($routeProvider){
 	})
 	.when('/uploadPicture',{
 		templateUrl:'_user/uploadPicture.html'
-})
+	})
+	.when('/getAllUsers',{
+		controller:'UserController',
+		templateUrl:'_user/listOfUsers.html'
+		
+	})
+	.when('/friendsList',{
+		controller:'FriendController',
+		templateUrl:'_friend/listOfFriends.html'
+	})
+	.when('/pendingRequest',{
+		controller:'FriendController',
+		templateUrl:'_friend/pendingRequest.html'
+		
+	})
 })
 app.run(function($cookieStore,$rootScope,$location,UserService){  //entry point
 	

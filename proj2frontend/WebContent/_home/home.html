@@ -5,6 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>Welcome to NIIT, {{pageContext.request.userPrincipal.name }} </h2>
+<div  ng-show="currentUser.id">
+						<a href=""><img src="http://localhost:8090/backend/resources/images/{{currentUser.username}}"  class="img-circle" width="25%" height="25%"></a>
+						<span class="glyphicon glyphicon-user"> welcome {{currentUser.username}}</div>					
 </body>
 </html>

@@ -95,6 +95,19 @@ public ResponseEntity<?> registerUser(@RequestBody User user){
 		return new ResponseEntity<Error>(error , HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
+@RequestMapping(value="/getUsers",method=RequestMethod.GET)
+public ResponseEntity<?> getAllUsers(HttpSession session){
+	User user=(User)session.getAttribute("user");
+	if(user==null)
+	return new	ResponseEntity<Error>(new Error(1,"Unauthorized user"),HttpStatus.UNAUTHORIZED);
+	else
+	{
+		List<User> users=userDao.getAllUsers(user);
+		for(User u:users)
+			System.out.println("IsONline " + u.isOnline());
+		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+	}
+}
 @RequestMapping(value="/logout",method=RequestMethod.PUT)
 public ResponseEntity<?> logout(HttpSession session){
 	User user=(User)session.getAttribute("user");

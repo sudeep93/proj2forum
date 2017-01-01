@@ -14,6 +14,14 @@ app.factory('UserService',function($http){
 		console.log('entering logout service')
 		return $http.put(BASE_URL + "/logout")
 	};
+	userService.getAllUsers=function(){
+		console.log('entering getallusers in user service')
+		return $http.get(BASE_URL +"/getUsers")
+	}
 	
+	userService.friendRequest=function(username){
+		console.log('service --- friendRequest');
+		return $http.post(BASE_URL+ '/friendRequest',username);
+	}
 	return userService;
 })

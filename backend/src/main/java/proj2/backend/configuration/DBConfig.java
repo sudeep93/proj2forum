@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import proj2.backend.model.Friend;
 import proj2.backend.model.Job;
 import proj2.backend.model.UploadFile;
 import proj2.backend.model.User;
@@ -32,6 +33,7 @@ public class DBConfig {
 		return lsf.addAnnotatedClasses(User.class)
 				.addAnnotatedClasses(Job.class)
 				.addAnnotatedClasses(UploadFile.class)
+				.addAnnotatedClasses(Friend.class)
 				
 
 				
