@@ -62,7 +62,7 @@
 						 <ul class="nav navbar-nav">
 							<li class="hvr-bounce-to-bottom active"><a href="#/home">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="#/getAllUsers" ng-show="currentUser.id">List Of Users</a></li>
-							<li class="hvr-bounce-to-bottom"><a href="#/pendingRequest">Friends</a></li>
+							<li class="hvr-bounce-to-bottom"><a href="#/getAllFriends">Friends</a></li>
 							
 							<li class="dropdown" ><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.id">
                      Job details<b class="caret"></b></a>
@@ -135,7 +135,10 @@
 <script type="text/javascript" src="_user/userservice.js"></script>
 
 <script type="text/javascript" src="_job/jobcontroller.js"></script>
-<script type="text/javascript" src="_job/jobservice.js"></script
+<script type="text/javascript" src="_job/jobservice.js"></script>
+
+<script type="text/javascript" src="_friend/friendservice.js"></script>
+	<script type="text/javascript" src="_friend/friendcontroller.js"></script>
 ><!-- //for bootstrap working -->
 </body>
 </html>

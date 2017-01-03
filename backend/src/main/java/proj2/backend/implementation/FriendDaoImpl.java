@@ -16,7 +16,7 @@ private SessionFactory sessionFactory;
 	
 	public List<Friend> getAllFriends(String username) {
       Session session=sessionFactory.openSession();
-      Query query=session.createQuery("from Friend where (to_id=? or from_id=?) and status=?");
+      Query query=session.createQuery("from Friend  where (to_id=? or from_id=?) and status=?");
       query.setString(0, username);
       query.setString(1, username);
       query.setCharacter(2, 'A');
@@ -39,7 +39,7 @@ private SessionFactory sessionFactory;
 	
 	public List<Friend> getPendingRequest(String username) {
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from Friend where toId=? and status=?");
+		Query query=session.createQuery("from Friend  where toId=? and status=?");
 		query.setString(0, username);
 		query.setCharacter(1, 'P');
 		List<Friend> pendingRequest=query.list();
@@ -49,7 +49,7 @@ private SessionFactory sessionFactory;
 	
 	public void updatePendingRequest(char friendStatus, String fromId, String toId) {
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("update Friend set status=? where fromId=? and toId=?");
+		Query query=session.createQuery("update Friend  set status=? where fromId=? and toId=?");
 		query.setCharacter(0, friendStatus);
 		query.setString(1, fromId);
 		query.setString(2, toId);
