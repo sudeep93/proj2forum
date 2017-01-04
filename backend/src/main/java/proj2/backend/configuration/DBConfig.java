@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import proj2.backend.model.BlogComment;
+import proj2.backend.model.BlogPost;
 import proj2.backend.model.Friend;
 import proj2.backend.model.Job;
 import proj2.backend.model.UploadFile;
@@ -34,6 +36,8 @@ public class DBConfig {
 				.addAnnotatedClasses(Job.class)
 				.addAnnotatedClasses(UploadFile.class)
 				.addAnnotatedClasses(Friend.class)
+				.addAnnotatedClasses(BlogPost.class)
+				.addAnnotatedClasses(BlogComment.class)
 				
 
 				

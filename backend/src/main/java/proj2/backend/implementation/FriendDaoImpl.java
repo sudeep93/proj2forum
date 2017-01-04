@@ -15,15 +15,15 @@ public class FriendDaoImpl implements FriendDao{
 private SessionFactory sessionFactory;
 	
 	public List<Friend> getAllFriends(String username) {
-      Session session=sessionFactory.openSession();
-      Query query=session.createQuery("from Friend  where (to_id=? or from_id=?) and status=?");
-      query.setString(0, username);
-      query.setString(1, username);
-      query.setCharacter(2, 'A');
-      List friends=query.list();
-      session.close();
-      return friends;
-	}
+	      Session session=sessionFactory.openSession();
+	      Query query=session.createQuery("from Friend where (to_id=? or from_id=?) and status=?");
+	      query.setString(0, username);
+	      query.setString(1, username);
+	      query.setCharacter(2, 'A');
+	      List friends=query.list();
+	      session.close();
+	      return friends;
+		}
 	
 	public void sendFriendRequest(String from,String to) {
 		Session session=sessionFactory.openSession();

@@ -61,8 +61,24 @@
 						<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 						 <ul class="nav navbar-nav">
 							<li class="hvr-bounce-to-bottom active"><a href="#/home">Home</a></li>
-							<li class="hvr-bounce-to-bottom"><a href="#/getAllUsers" ng-show="currentUser.id">List Of Users</a></li>
-							<li class="hvr-bounce-to-bottom"><a href="#/getAllFriends">Friends</a></li>
+							<li class="hvr-bounce-to-bottom"><a href="#/getAllUsers" ng-show="currentUser.id">List Of Users</a>
+								 <li class="dropdown">
+	<a href="" class="dropdown-toggle" data-toggle="dropdown" >Friends<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+							<li><a href="#/friendsList"> Friends List</a></li>
+							<li><a href="#/pendingRequest"> Pending Friends</a></li>
+							
+							</ul>
+							</li>
+							
+							
+							 <li class="dropdown" ng-show="currentUser.id">
+	<a href="" class="dropdown-toggle" data-toggle="dropdown" >Blog<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="#/getAllBlogs"> View All Blogs</a></li>
+			<li><a href="#/addPost">Add a new Post</a></li>
+		</ul>
+</li>
 							
 							<li class="dropdown" ><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.id">
                      Job details<b class="caret"></b></a>
@@ -139,6 +155,10 @@
 
 <script type="text/javascript" src="_friend/friendservice.js"></script>
 	<script type="text/javascript" src="_friend/friendcontroller.js"></script>
+	
+	<script type="text/javascript" src="_blog/blogservice.js"></script>
+	<script type="text/javascript" src="_blog/blogcontroller.js"></script>
+	<script type="text/javascript" src="_blog/blogdetailcontroller.js"></script>
 ><!-- //for bootstrap working -->
 </body>
 </html>
