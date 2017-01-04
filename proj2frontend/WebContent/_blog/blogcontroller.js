@@ -9,7 +9,7 @@ app.controller('BlogController',function($scope,$location,BlogService){
 			console.log(response.data);
 			console.log(response.status);
 			alert("successfully added")
-			$location.path('/getBlogs')
+			$location.path('/getAllBlogs')
 			
 		},function(response){
 			console.log(response.data);

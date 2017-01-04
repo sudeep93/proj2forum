@@ -6,7 +6,7 @@
 </head>
 <body>
 Pending Requests {{p.fromId}}
-<table>
+<table  class="table table-striped">
 <tr ng-repeat="p in pendingRequest">
 <td>{{p.fromId}}</td>
 <td><a href="" ng-click="updatePendingRequest(p.fromId,'A')" class="btn btn-default">Accept</a></td>

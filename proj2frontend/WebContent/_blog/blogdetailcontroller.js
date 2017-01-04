@@ -39,6 +39,7 @@ app.controller('BlogDetailController',function($routeParams,$scope,BlogService){
 		alert($scope.comment.body)
 		alert($scope.comment.blogPost)
         BlogService.addComment($scope.comment)
+        $scope.comment.body=""
         .then(function(response){
         	console.log(response.data)
         	console.log(response.status)

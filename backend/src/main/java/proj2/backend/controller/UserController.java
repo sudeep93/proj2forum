@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +28,8 @@ import proj2.backend.implementation.UserDao;
 import proj2.backend.model.User;
 import proj2.backend.model.Error;
 import proj2.backend.model.UploadFile;
+import proj2.backend.controller.EmailService;
+
 @RestController
 public class UserController {
 Logger logger=LoggerFactory.getLogger(this.getClass());
@@ -31,6 +37,8 @@ Logger logger=LoggerFactory.getLogger(this.getClass());
 private UserDao userDao;
 @Autowired
 private FileUploadDAO fileUploadDao;
+@Autowired
+private EmailService emailService;
 
 @RequestMapping(value="/login",method=RequestMethod.POST)
 public ResponseEntity<?> login(@RequestBody User user,HttpSession session ){
@@ -75,7 +83,7 @@ public ResponseEntity<?> login(@RequestBody User user,HttpSession session ){
 //'?'  - Any Type [User,Error] 
 //ENDPOINT : http://localhost:8080/proj2backend/register 
 @RequestMapping(value="/register",method=RequestMethod.POST)
-public ResponseEntity<?> registerUser(@RequestBody User user){
+public ResponseEntity<?> registerUser(@RequestBody User user,Model model ,HttpServletRequest request,BindingResult result){
 	//client will send only username, password, email, role 
 	try{
 	logger.debug("USERCONTROLLER=>REGISTER " + user);
@@ -83,18 +91,20 @@ public ResponseEntity<?> registerUser(@RequestBody User user){
 	user.setOnline(false);
 	User savedUser=userDao.registerUser(user);
 	logger.debug("User Id generated is " + savedUser.getId());
+	emailService.send(user, "hello"+user.getUsername()+", Your Account is Activated", "Welcome to sudeep's website!");
 	if(savedUser.getId()==0){
 		Error error=new Error(2,"Couldnt insert user details ");
 		return new ResponseEntity<Error>(error , HttpStatus.CONFLICT);
 	}
 	else
 		return new ResponseEntity<User>(savedUser,HttpStatus.OK);
-	}catch(Exception e){
-		e.printStackTrace();
-		Error error=new Error(2,"Couldnt insert user details. Cannot have null/duplicate values " + e.getMessage());
+	}catch(MessagingException mse){
+		mse.printStackTrace();
+		Error error=new Error(2,"Couldnt insert user details. Cannot have null/duplicate values " + mse.getMessage());
 		return new ResponseEntity<Error>(error , HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
+
 @RequestMapping(value="/getUsers",method=RequestMethod.GET)
 public ResponseEntity<?> getAllUsers(HttpSession session){
 	User user=(User)session.getAttribute("user");
