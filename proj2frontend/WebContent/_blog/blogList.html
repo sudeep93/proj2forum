@@ -5,12 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="login">
 Search By Title:
 <input type="text" ng-model="search.title">
 Search By Author
 <input type="text" ng-model="search.createdBy.username">
 <div class="table-responsive">
-<table class="table">
+<table class="table table-striped">
 <tr><th>Recent Posts<th></tr>
 
 <tr ng-repeat="blogPost in blogPosts | orderBy:'date':true | filter:search">
@@ -21,6 +22,7 @@ Search By Author
 
 </tr>
 </table>
+</div>
 </div>
 </body>
 </html>

@@ -50,6 +50,10 @@ app.config(function($routeProvider){
 		controller:'BlogDetailController',
 		templateUrl:'_blog/getBlogDetail.html'
 	})
+	.when('/chat',{
+		controller:'ChatCtrl',
+		templateUrl:'_chat/chat.html'
+	})
 })
 app.run(function($cookieStore,$rootScope,$location,UserService){  //entry point
 	

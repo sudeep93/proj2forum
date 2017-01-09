@@ -16,6 +16,8 @@ import proj2.backend.model.BlogComment;
 import proj2.backend.model.BlogPost;
 import proj2.backend.model.Friend;
 import proj2.backend.model.Job;
+import proj2.backend.model.Message;
+import proj2.backend.model.OutputMessage;
 import proj2.backend.model.UploadFile;
 import proj2.backend.model.User;
 
@@ -38,6 +40,11 @@ public class DBConfig {
 				.addAnnotatedClasses(Friend.class)
 				.addAnnotatedClasses(BlogPost.class)
 				.addAnnotatedClasses(BlogComment.class)
+				.addAnnotatedClasses(Message.class)
+				.addAnnotatedClasses(OutputMessage.class)
+				.addAnnotatedClasses(Error.class)
+
+
 				
 
 				

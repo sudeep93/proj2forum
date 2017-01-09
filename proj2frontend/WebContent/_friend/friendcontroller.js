@@ -1,5 +1,5 @@
 app.controller('FriendController',function($scope,$location,FriendService){
-	alert('entering friend controller')
+	console.log('entering friend controller')
 	$scope.friends=[];
 	$scope.pendingRequest=[]
 	$scope.friends= FriendService.getAllFriends()
@@ -18,13 +18,13 @@ app.controller('FriendController',function($scope,$location,FriendService){
 			console.log(response.status);
 			$scope.pendingRequest= response.data
 			console.log($scope.pendingRequest)
-			alert($scope.pendingRequest);
+			console.log($scope.pendingRequest);
 		},function(response){
 			console.log(response.status)
 		})
 	
 	$scope.updatePendingRequest=function(fromId,friendStatus){
-		alert('updateFriendrequest')
+		console.log('updateFriendrequest')
 		FriendService.updateFriendRequest(friendStatus,fromId)
 		.then(function(response){
 			console.log(response.status)

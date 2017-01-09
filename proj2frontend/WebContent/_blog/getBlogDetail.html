@@ -4,45 +4,83 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
 <body>
-
+<div class="login">
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <div >{{blogPost.title}}</div>
-            
-            <span><strong>by: </strong>{{blogPost.createdBy.username}}</span>
-            <span><strong>on: </strong>{{blogPost.createdOn | date:'medium'}}</span>
+          <h4><small>RECENT POSTS</small></h4>
+                <hr>
+      <h2>{{blogPost.title}}</h2>
+<h5><span class="glyphicon glyphicon-time"></span> Post by {{blogPost.createdBy.username}}, {{blogPost.createdOn | date:'medium'}}</h5>            
+
           
           </div>
           <div class="panel-body">
-          {{blogPost.body}}
+          <p>{{blogPost.body}}</p>
           
           </div>
           </div>
           </div>
+          <h4>Comments:</h4>
 <a href="" ng-click="getComments(blogPost.id)" class="btn btn-default">Show Comments</a>
 <ul ng-show="showComments">
 <li ng-repeat="comment in comments" style="list-style: none;">
-<div>
-{{comment.body}}
- <span><strong>by: </strong>{{comment.createdBy.username}}</span>
-            <span><strong>on: </strong>{{comment.createdOn | date:'medium'}}</span>
+ <div class="row">
+        <div class="col-sm-2 text-center">
+         <img src="http://localhost:8090/backend/resources/images/{{comment.createdBy.username}}" class="img-circle" height="65" width="65" alt="Avatar">
+            </div>
+        <div class="col-sm-10">
+        <h4>{{comment.createdBy.username}}<small>{{comment.createdOn | date:'medium'}}</small></h4>
+
+ <p>{{comment.body}}</p>
+          <br>
 </div>
-</li>
+
+</div></li>
+
 
 </ul>
 
 </div>
-<div class="row">
+<h4>Leave a Comment:</h4>
 <form>
+<div class="form-group">
 <input type="text" ng-model="blogPost.id" hidden="true">
-<div class="col-sm-3 col-md-3 col-lg-2">
-<textarea required ng-model="comment.body"></textarea>
-<button ng-click="addComment()" class="btn btn-primary btn-block">Post Comment</button>
 </div>
+
+<textarea required ng-model="comment.body"  rows="3" ></textarea>
+<button ng-click="addComment()" class="btn btn-primary btn-block">Post Comment</button>
+
 </form>
 </div>
+
 </body>
 </html>

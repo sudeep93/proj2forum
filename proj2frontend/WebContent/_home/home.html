@@ -4,27 +4,73 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<style>
+  .bg-1 { 
+      background-color: #c34c21;
+      color: #ffffff;
+  }
+  </style>
+</head>
 <body>
-<div class="banner-body">
-		<div class="container">
-<!-- header -->
-			<div class="header">
-			<div class="header-bottom">
-		<div class="header-bottom-top">
-			
-		</div>
-		<div class="clearfix"> </div>
-<!-- banner -->
-		<div class="banner">
-<div  ng-show="currentUser.id">
-						<a href=""><img src="http://localhost:8090/backend/resources/images/{{currentUser.username}}"  class="img-circle" width="25%" height="25%"></a>
-						<span class="glyphicon glyphicon-user"> welcome {{currentUser.username}}</div>		
-						
-						</div>
-						</div>
-						</div>		
-						</div>
-						</div>
-						
+
+<div class="bg-1">
+  <div class="container text-center">
+  <div  ng-show="currentUser.id"> 
+    <h3>WELCOME, {{currentUser.username}}</h3>
+    <img src="http://localhost:8090/backend/resources/images/{{currentUser.username}}" class="img-circle" alt="Bird" width="350" height="350">
+    <h3></h3>
+  </div>
+</div>
+</div>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <body> -->
+<!-- <div class="banner-body"> -->
+<!-- 		<div class="container"> -->
+<!-- <!-- header --> -->
+<!-- 			<div class="header"> -->
+<!-- 			<div class="header-bottom"> -->
+<!-- 		<div class="header-bottom-top"> -->
+			
+<!-- 		</div> -->
+<!-- 		<div class="clearfix"> </div> -->
+<!-- <!-- banner --> -->
+<!-- 		<div class="banner"> -->
+<!-- <div  ng-show="currentUser.id"> -->
+<!-- 						<a href=""><img src="http://localhost:8090/backend/resources/images/{{currentUser.username}}"  class="img-circle" width="25%" height="25%"></a> -->
+<!-- 						<span class="glyphicon glyphicon-user"> welcome {{currentUser.username}}</div>		 -->
+						
+<!-- 						</div> -->
+<!-- 						</div> -->
+<!-- 						</div>		 -->
+<!-- 						</div> -->
+<!-- 						</div> -->
+						
+<!-- </body> -->
+<!-- </html> -->

@@ -91,7 +91,7 @@ public ResponseEntity<?> registerUser(@RequestBody User user,Model model ,HttpSe
 	user.setOnline(false);
 	User savedUser=userDao.registerUser(user);
 	logger.debug("User Id generated is " + savedUser.getId());
-	emailService.send(user, "hello"+user.getUsername()+", Your Account is Activated", "Welcome to sudeep's website!");
+	emailService.send(user, "hello"+user.getUsername()+", World Tech Forum(W.T.F.)", "Welcome to W.T.F website! happy socializing");
 	if(savedUser.getId()==0){
 		Error error=new Error(2,"Couldnt insert user details ");
 		return new ResponseEntity<Error>(error , HttpStatus.CONFLICT);
