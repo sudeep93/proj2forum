@@ -1,5 +1,5 @@
-app.controller('BlogDetailController',function($routeParams,$scope,BlogService){
-	alert('entering blogdetailcontroller')
+app.controller('BlogDetailController',function($routeParams,$scope,BlogService,$location){
+	console.log('entering blogdetailcontroller')
 	var id=$routeParams.id
 	$scope.blogPost={}
 	$scope.comment={body:'',blogPost:{}}
@@ -33,12 +33,13 @@ app.controller('BlogDetailController',function($routeParams,$scope,BlogService){
 	}
 	
 	$scope.addComment=function(){
-		alert($scope.blogPost.id)
+		console.log($scope.blogPost.id)
 		$scope.comment.blogPost.id = $scope.blogPost.id;
 		$scope.comment.blogPost=$scope.blogPost
-		alert($scope.comment.body)
-		alert($scope.comment.blogPost)
+		console.log($scope.comment.body)
+		console.log($scope.comment.blogPost)
         BlogService.addComment($scope.comment)
+        $location.path('/getAllBlogs')
         .then(function(response){
         	console.log(response.data)
         	console.log(response.status)
